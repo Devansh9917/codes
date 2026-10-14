@@ -1,0 +1,35 @@
+import React, { useState } from "react";
+
+function App() {
+  const [search, setSearch] = useState("");
+
+  const books = [
+    "The Alchemist",
+    "Harry Potter",
+    "The Hobbit",
+    "Atomic Habits",
+    "Rich Dad Poor Dad"
+  ];
+
+  const results = books.filter((book) =>
+    book.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h1>Book Finder</h1>
+
+      <input
+        placeholder="Search book"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {results.map((book, index) => (
+        <p key={index}>{book}</p>
+      ))}
+    </div>
+  );
+}
+
+export default App;
