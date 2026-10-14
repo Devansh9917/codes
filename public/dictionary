@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+
+function App() {
+  const [word, setWord] = useState("");
+  const [meaning, setMeaning] = useState("");
+
+  const dictionary = {
+    react: "A JavaScript library for building user interfaces.",
+    computer: "An electronic device that processes data.",
+    happy: "Feeling pleasure or joy.",
+    book: "A collection of written pages.",
+    school: "A place where students learn."
+  };
+
+  const searchWord = () => {
+    setMeaning(dictionary[word.toLowerCase()] || "Word not found");
+  };
+
+  return (
+    <div>
+      <h1>Dictionary App</h1>
+
+      <input
+        value={word}
+        onChange={(e) => setWord(e.target.value)}
+        placeholder="Enter a word"
+      />
+
+      <button onClick={searchWord}>Search</button>
+
+      <p>{meaning}</p>
+    </div>
+  );
+}
+
+export default App;
