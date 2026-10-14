@@ -1,0 +1,54 @@
+import React, { useState } from "react";
+
+function App() {
+  const questions = [
+    {
+      question: "What is React?",
+      options: ["Library", "Database", "Operating System"],
+      answer: "Library"
+    },
+    {
+      question: "Which language is used with React?",
+      options: ["JavaScript", "Python", "Java"],
+      answer: "JavaScript"
+    },
+    {
+      question: "Which company created React?",
+      options: ["Google", "Facebook", "Microsoft"],
+      answer: "Facebook"
+    }
+  ];
+
+  const [current, setCurrent] = useState(0);
+  const [score, setScore] = useState(0);
+
+  const answer = (option) => {
+    if (option === questions[current].answer) {
+      setScore(score + 1);
+    }
+
+    if (current < questions.length - 1) {
+      setCurrent(current + 1);
+    } else {
+      alert("Quiz finished! Score: " + (score + (option === questions[current].answer ? 1 : 0)));
+    }
+  };
+
+  return (
+    <div>
+      <h1>Quiz App</h1>
+
+      <h2>{questions[current].question}</h2>
+
+      {questions[current].options.map((option) => (
+        <button key={option} onClick={() => answer(option)}>
+          {option}
+        </button>
+      ))}
+
+      <p>Score: {score}</p>
+    </div>
+  );
+}
+
+export default App;
