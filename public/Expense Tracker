@@ -1,0 +1,43 @@
+import React, { useState } from "react";
+
+function App() {
+  const [expense, setExpense] = useState("");
+  const [amount, setAmount] = useState("");
+  const [expenses, setExpenses] = useState([]);
+
+  const addExpense = () => {
+    if (expense && amount) {
+      setExpenses([...expenses, { expense, amount }]);
+      setExpense("");
+      setAmount("");
+    }
+  };
+
+  return (
+    <div>
+      <h1>Expense Tracker</h1>
+
+      <input
+        placeholder="Expense"
+        value={expense}
+        onChange={(e) => setExpense(e.target.value)}
+      />
+
+      <input
+        placeholder="Amount"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+
+      <button onClick={addExpense}>Add</button>
+
+      {expenses.map((item, index) => (
+        <p key={index}>
+          {item.expense} - ₹{item.amount}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+export default App;
