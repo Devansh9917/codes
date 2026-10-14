@@ -1,0 +1,52 @@
+
+import { useState } from "react";
+
+function App() {
+  const [movie, setMovie] = useState("");
+  const [movies, setMovies] = useState([]);
+
+  const API_KEY = "72d4b28f";
+
+  async function searchMovie() {
+    const response = await fetch(
+      `https://www.omdbapi.com/?s=${movie}&apikey=${API_KEY}`
+    );
+
+    const data = await response.json();
+
+    if (data.Response === "True") {
+      setMovies(data.Search);
+    } else {
+      setMovies([]);
+      alert("Movie not found!");
+    }
+  }
+
+  return (
+    <div>
+      <h1>Movie Search</h1>
+
+      <input
+        type="text"
+        placeholder="Enter movie name"
+        value={movie}
+        onChange={(e) => setMovie(e.target.value)}
+      />
+
+      <button onClick={searchMovie}>Search</button>
+
+      {movies.map((m) => (
+        <div key={m.imdbID}>
+          <h3>{m.Title}</h3>
+          <p>Year: {m.Year}</p>
+
+          {m.Poster !== "N/A" && (
+            <img src={m.Poster} alt={m.Title} width="150" />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default App;
