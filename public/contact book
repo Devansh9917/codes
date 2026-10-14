@@ -1,0 +1,56 @@
+import React, { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [search, setSearch] = useState("");
+  const [contacts, setContacts] = useState([]);
+
+  const addContact = () => {
+    if (name && phone) {
+      setContacts([...contacts, { name, phone }]);
+      setName("");
+      setPhone("");
+    }
+  };
+
+  const filtered = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h1>Contact Book</h1>
+
+      <input
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <input
+        placeholder="Phone"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+      />
+
+      <button onClick={addContact}>Add Contact</button>
+
+      <br />
+
+      <input
+        placeholder="Search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {filtered.map((contact, index) => (
+        <p key={index}>
+          {contact.name} - {contact.phone}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+export default App;
