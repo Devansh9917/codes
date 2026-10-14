@@ -1,0 +1,30 @@
+import React, { useState } from "react";
+
+function App() {
+  const [amount, setAmount] = useState("");
+  const [result, setResult] = useState("");
+
+  const convert = () => {
+    const inr = Number(amount) * 83;
+    setResult(inr);
+  };
+
+  return (
+    <div>
+      <h1>Currency Converter</h1>
+
+      <input
+        type="number"
+        placeholder="Enter USD"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+
+      <button onClick={convert}>Convert</button>
+
+      <p>INR: ₹{result}</p>
+    </div>
+  );
+}
+
+export default App;
