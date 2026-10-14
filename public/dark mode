@@ -1,0 +1,19 @@
+import React, { useState } from "react";
+
+function App() {
+  const [dark, setDark] = useState(false);
+
+  return (
+    <div>
+      <h1>Theme App</h1>
+
+      <p>Current Theme: {dark ? "Dark" : "Light"}</p>
+
+      <button onClick={() => setDark(!dark)}>
+        Change Theme
+      </button>
+    </div>
+  );
+}
+
+export default App;
