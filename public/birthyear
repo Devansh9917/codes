@@ -1,0 +1,30 @@
+import React, { useState } from "react";
+
+function App() {
+  const [year, setYear] = useState("");
+  const [age, setAge] = useState("");
+
+  const calculateAge = () => {
+    const currentYear = new Date().getFullYear();
+    setAge(currentYear - Number(year));
+  };
+
+  return (
+    <div>
+      <h1>Age Calculator</h1>
+
+      <input
+        type="number"
+        placeholder="Enter birth year"
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
+      />
+
+      <button onClick={calculateAge}>Calculate Age</button>
+
+      <p>Age: {age}</p>
+    </div>
+  );
+}
+
+export default App;
